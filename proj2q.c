@@ -580,10 +580,9 @@ e irá ajudar mais tarde
 
 
 char *guardaCodeReserva(){
-    char c = getchar();
-    char *Rcode;
+	char c = getchar();
+	char *Rcode;
 	int i=0, sz=1;
-
 	Rcode = malloc(1*(sizeof(char)));
 
 	if (Rcode == NULL){
@@ -591,11 +590,12 @@ char *guardaCodeReserva(){
 		free(Rcode);
 		LibertaTudo();
 	}
-	
+
 	while (c == ' ' || c == '\t')
 		c = getchar();
-    while ((c != ' ' ) && (c != '\t') && (c != '\n')){
-        *(Rcode + i)  = c;
+
+	while ((c != ' ' ) && (c != '\t') && (c != '\n')){
+		*(Rcode + i)  = c;
 		Rcode = realloc(Rcode, (sz++) * sizeof(Rcode));
 		i++;
 		c = getchar();
@@ -605,11 +605,13 @@ char *guardaCodeReserva(){
 			LibertaTudo();
 		}
 	}
+
 	if (Rcode == NULL){
 		printf("No memory.\n");
 		free(Rcode);
 		LibertaTudo();
 	}
+
 	*(Rcode + i)  = '\0';
 	return Rcode;
 }
@@ -631,7 +633,7 @@ char validaCodeReserva(char *r){
 	}
 	for (i=0; i < x; i++){
 		if (!((r[i] >= 'A' && r[i] <= 'Z') || (r[i] >= '0' && r[i] <= '9')))
-            return FALSE;
+            		return FALSE;
 	}
 	return TRUE;
 }
@@ -724,12 +726,10 @@ int calculadorDEcapacidade(linkedlistReservasGERAL Reserva){
 		}
 	}
 	soma = soma + Reserva.numPassageiros;
-	if (soma > capacidadeVoo){
+	if (soma > capacidadeVoo)
 		return FALSE;
-	}
 	else
 		return TRUE;
-	
 }
 
 /* 
@@ -846,8 +846,8 @@ void apagaReservacomIDVoo(char *idVOO){
 			else {
 				help->next = tmp->next;
 				free(tmp->ReservaCODE);
-                free(tmp);
-                tmp =  help->next;
+                		free(tmp);
+                		tmp =  help->next;
 			}
 		}
 		else {
@@ -881,8 +881,8 @@ void apagaReservacomReservaCode(char *ReservaCODE){
 			else {
 				help->next = tmp->next;
 				free(tmp->ReservaCODE);
-                free(tmp);
-                tmp =  help->next;
+                		free(tmp);
+                		tmp =  help->next;
 			}
 		}
 		else {
@@ -916,9 +916,9 @@ void listaReservasVoo(linkedlistReservasGERAL Reserva){
 	}
 	while (tmp!=NULL){
 		if (tmp->data.ano == Reserva.data.ano && tmp->data.dia == Reserva.data.dia &&
-		tmp->data.mes == Reserva.data.mes && (strcmp(tmp->VooCODE, Reserva.VooCODE) == 0)){
+		tmp->data.mes == Reserva.data.mes && (strcmp(tmp->VooCODE, Reserva.VooCODE) == 0))
 			printf("%s %d\n", tmp->ReservaCODE, tmp->numPassageiros);		
-		}
+	
 		tmp = tmp->next;
 	}
 	return;
@@ -949,9 +949,9 @@ void criaReserva(linkedlistReservasGERAL Reserva){
 	new->numPassageiros = Reserva.numPassageiros;
 	new->next=NULL;
 
-	if(first == NULL){
+	if(first == NULL)
 		first = new;
-	}
+
 	else if (strcmp(first->ReservaCODE, new->ReservaCODE) > 0){
 		new->next=first;
 		first = new;
@@ -974,7 +974,7 @@ Esta função aloca memória para um novo node quando os dados da reserva são v
 
 
 void criaListaReserva(){
-    linkedlistReservasGERAL Reserva;
+    	linkedlistReservasGERAL Reserva;
 
 	leProximaPalavra(Reserva.VooCODE);
 	Reserva.data = leData();
